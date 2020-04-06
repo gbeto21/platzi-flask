@@ -4,6 +4,13 @@ app = Flask(__name__)
 
 todos = ['Comprar café', 'Enviar solicitud de compra', 'Entregar video al productor.']
 
+@app.errorhandler(404)
+def not_found(err):
+    return render_template('404.html', error = err)
+
+@app.errorhandler(500)
+def internal_server_error(err):
+    return render_template('500.html', error = err)
 
 @app.route('/')
 def index():
